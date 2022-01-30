@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Playwright 自动化测试入门 :: UI测试简明教程</title>
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">UI测试简明教程</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="archives" data-version="2022">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">导航</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">说明</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="getting-started-with-playwright-automation-testing.html">Playwright 自动化测试入门</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">导航</span>
+    <span class="version">2022</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">导航</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">2022</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">导航</a></li>
+    <li><a href="getting-started-with-playwright-automation-testing.html">Playwright 自动化测试入门</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/MetaTDD/ui-test/edit/1st/docs/modules/ROOT/pages/getting-started-with-playwright-automation-testing.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Playwright 自动化测试入门</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>目前市场上自动化测试工具有很多，有客户端，浏览器端，移动端等。比较现代的自动化测试工具有Puppeteer, Selenium, Playwright, Cypress，你可以在这里查看它们之间的差异对比。Puppeteer, Selenium, Playwright, Cypress 如何选择？</p>
+</div>
+<div class="paragraph">
+<p>Playwright 既可以作为 Playwright Test 测试运行器的一部分（本指南），也可以作为Playwright 库使用。</p>
+</div>
+<div class="paragraph">
+<p>Playwright Test 是专门为适应端到端测试的需要而创建的。它能做你所期望的常规测试运行器的一切，Playwright Test可以做到以下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在所有浏览器上运行测试。</p>
+</li>
+<li>
+<p>并行执行测试。</p>
+</li>
+<li>
+<p>享受开箱即用的上下文隔离。</p>
+</li>
+<li>
+<p>在失败时捕获视频、屏幕截图和其他人工制品。</p>
+</li>
+<li>
+<p>将你的POMs整合为可扩展的固定装置。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_安装"><a class="anchor" href="#_安装"></a>安装</h3>
+<div class="paragraph">
+<p>在需要进行测试的目录下进行安装 Playwright Test,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node"># 安装palywright test
+npm i -D @playwright/test
+# 安装支持的浏览器（默认安装全部）
+npx playwright install</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>npx playwright install默认会安装三大内核浏览器，可指定安装以下类型浏览器：
+chromium, chrome, chrome-beta, msedge, msedge-beta, msedge-dev, firefox, webkit
+Playwright 支持 Chromium 84+, Firefox 76+, Safari/WebKit 13+</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>指定浏览器：
+不推荐，Playwright每个版本都有对应的浏览器匹配，修改其他浏览器版本可能会存在兼容问题</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const playwright = require('playwright');
+
+(async () =&gt; {
+  const browser = await playwright.chromium.launch({
+    executablePath: '/your/custom/chromium'
+  });
+  const page = await browser.newPage();
+  await page.goto('http://whatsmyuseragent.org/');
+  await page.screenshot({ path: `example.png` });
+  await browser.close();
+})();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Playwright 下载 Chromium, WebKit 和 Firefox 浏览器默认保存到操作系统特定的缓存目录下:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Windows: %USERPROFILE%\AppData\Local\ms-playwright
+MacOS: ~/Library/Caches/ms-playwright
+Linux: ~/.cache/ms-playwright</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_第一个demo"><a class="anchor" href="#_第一个demo"></a>第一个demo</h3>
+<div class="paragraph">
+<p>在测试目录下创建js文件 tests/foo.spec.js (或ts文件 tests/foo.spec.ts) 来定义你的测试。
+&gt; 注意：文件必须以spec.js结尾，否则直接测试时会忽略。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { test, expect } = require('@playwright/test');
+
+test('basic test', async ({ page }) =&gt; {
+  await page.goto('https://playwright.dev/');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('Playwright');
+});</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ts hljs" data-lang="ts">import { test, expect } from '@playwright/test';
+
+test('basic test', async ({ page }) =&gt; {
+  await page.goto('https://playwright.dev/');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('Playwright');
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>现在你可以运行你的测试集，确保你的测试文件在tests目录中。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node">npx playwright test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Playwright Test刚刚使用Chromium浏览器，以无头（无图形）方式进行了一次测试。可以通过参数来指定用使用有头(图形）浏览器来运行。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node">npx playwright test --headed</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>也可以通过配置参数来制定使用其他浏览器进行测试：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node">npx playwright test --browser=firefox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>或者，使用全部浏览器(chromium，firefox, webkit）进行测试</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">npx playwright test --browser=all</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_常用命令"><a class="anchor" href="#_常用命令"></a>常用命令</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node"># 运行所有测试
+npx playwright test
+
+# 运行单个测试文件
+npx playwright test tests/todo-page.spec.ts
+
+# 运行测试集
+npx playwright test tests/todo-page/ tests/landing-page/
+
+# 运行包含my-spec 或 my-spec-2 文件名的测试
+npx playwright test my-spec my-spec-2
+
+# 运行附带标题的测试
+npx playwright test -g "add a todo item"
+
+# 使用带头浏览器运行测试
+npx playwright test --headed
+
+# 使用特定浏览器运行测试
+npx playwright test --browser=webkit
+
+# 使用所有浏览器运行测试
+npx playwright test --browser=all
+
+# 串行化运行测试
+npx playwright test --workers=1
+
+# 指定报告类型
+npx playwright test --reporter=dot
+
+# 使用Playwright检查器在调试模式下运行
+npx playwright test --debug
+
+# 使用帮助
+npx playwright test --help</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_生成测试脚本"><a class="anchor" href="#_生成测试脚本"></a>生成测试脚本</h3>
+<div class="paragraph">
+<p>Playwright具有生成测试的能力，开箱即用。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node">npx playwright codegen jd.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>运行codegen并在浏览器中执行动作。Playwright将生成用户交互的代码。codegen将生成可编辑的基于文本的选择器。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_保存认证信息"><a class="anchor" href="#_保存认证信息"></a>保存认证信息</h3>
+<div class="paragraph">
+<p>使用-save-storage运行codegen，在会话结束时保存cookies和localStorage。保存认证信息可以将测试用例进行接耦，比如需要登入验证的信息，保存认证后后续的测试用例可以直接加载认证信息使用，无需每次重复登入。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node">npx playwright codegen --save-storage=auth.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用&#8212;&#8203;load-storage运行，以消耗以前加载的存储。这样，所有的cookies和localStorage将被恢复，使大多数网络应用进入认证状态。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node"># 加载认证信息并打开网站
+npx playwright open --load-storage=auth.json jd.com
+# 加载认证信息并进行测试用例录制
+npx playwright codegen --load-storage=auth.json jd.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_模拟设备"><a class="anchor" href="#_模拟设备"></a>模拟设备</h3>
+<div class="paragraph">
+<p>你可以在模拟设备的同时记录脚本和测试。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-node hljs" data-lang="node"># 模拟 IPhone 11 进行录制测试脚本
+npx playwright codegen --device="iPhone 11" wikipedia.org</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_调试工具"><a class="anchor" href="#_调试工具"></a>调试工具</h3>
+<div class="paragraph">
+<p>Playwright脚本可与现有的调试工具一起使用，如Node.js调试器和浏览器开发工具。Playwright还为浏览器自动化引入了新的调试功能。</p>
+</div>
+<div class="sect3">
+<h4 id="_playwright_inspector"><a class="anchor" href="#_playwright_inspector"></a>Playwright Inspector</h4>
+<div class="paragraph">
+<p>Playwright Inspector是一个GUI工具，帮助编写和调试Playwright脚本。这是默认推荐的脚本故障排除工具。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_playwright_trace_viewer"><a class="anchor" href="#_playwright_trace_viewer"></a>Playwright Trace Viewer</h4>
+<div class="paragraph">
+<p>Playwright Trace Viewer是一个GUI工具，有助于以事后分析的方式对测试运行进行故障排除。</p>
+</div>
+<div class="paragraph">
+<p>生成报告</p>
+</div>
+<div class="paragraph">
+<p>Playwright Test有一些内置的报告器，可以满足不同的需求，也可以提供自定义报告器。尝试内置报告器的最简单方法是通过 --reporter 命令行选项。
+内置报告器</p>
+</div>
+<div class="paragraph">
+<p>所有内置的报告器都显示关于失败的详细信息，对于成功运行的报告器来说，大多有不同的粗体字。
+列表报告器
+List reporter是默认的（除了在CI上，那里的dot reporter是默认的）。它为每个正在运行的测试打印一行。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-npm hljs" data-lang="npm">npx playwright test --reporter=list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>下面是一个测试运行中的输出示例。失败的情况将在最后列出。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">npx playwright test --reporter=list
+Running 124 tests using 6 workers
+
+  ✓ should access error in env (438ms)
+  ✓ handle long test names (515ms)
+  x 1) render expected (691ms)
+  ✓ should timeout (932ms)
+    should repeat each:
+  ✓ should respect enclosing .gitignore (569ms)
+    should teardown env after timeout:
+    should respect excluded tests:
+  ✓ should handle env beforeEach error (638ms)
+    should respect enclosing .gitignore:</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
